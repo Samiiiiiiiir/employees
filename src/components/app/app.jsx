@@ -2,9 +2,9 @@ import { Component } from 'react';
 
 import AppFilter from '../app-filter/app-filter';
 import AppInfo from '../app-info/app-info';
+import EmployeesAddForm from '../employees-add-form/employees-add-form';
 import SearchPanel from '../search-panel/search-panel';
 import EmployeesList from '../employees-list/employees-list';
-import EmployeesAddForm from '../employees-add-form/employees-add-form';
 
 import nextId from 'react-id-generator';
 
@@ -100,6 +100,21 @@ class App extends Component {
     this.setState({ filter });
   };
 
+  onSalaryChange = (id, salary) => {
+    this.setState((state) => {
+      let newArr = [...state.data].map((item) => {
+        if (item.id === id) {
+          return { ...item, salary };
+        }
+        return item;
+      });
+
+      return {
+        data: newArr,
+      };
+    });
+  };
+
   render() {
     const { data, term, filter } = this.state;
 
@@ -121,6 +136,7 @@ class App extends Component {
           data={visibleData}
           onDelete={this.deleteItem}
           onToggleProp={this.onToggleProp}
+          onSalaryChange={this.onSalaryChange}
         />
         <EmployeesAddForm onAdd={this.addItem} />
       </>
