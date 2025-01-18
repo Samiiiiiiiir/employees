@@ -23,13 +23,8 @@ const EmployeesItem = ({
 
   let classes = 'list-group-item d-flex justify-content-between';
 
-  if (increase) {
-    classes += ' increase';
-  }
-
-  if (like) {
-    classes += ' like';
-  }
+  classes += increase ? ' increase' : '';
+  classes += like ? ' like' : '';
 
   return (
     <li className={classes}>
