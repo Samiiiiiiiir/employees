@@ -128,7 +128,7 @@ class App extends Component {
         <AppInfo total={employees} increased={increasedEmployees} />
 
         <div className="search-panel">
-          <SearchPanel onUpdate={this.onUpdateSearch} />
+          <SearchPanel onUpdateSearch={this.onUpdateSearch} />
           <AppFilter onFilterChange={this.onFilterChange} activeBtn={filter} />
         </div>
 
