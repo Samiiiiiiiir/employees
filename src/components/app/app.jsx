@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 
 import AppFilter from '../app-filter/app-filter';
 import AppInfo from '../app-info/app-info';
@@ -10,12 +10,8 @@ import nextId from 'react-id-generator';
 
 import './app.scss';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: [
+const App = () => {
+  const [data, setData] = useState([
         {
           name: 'John C.',
           salary: 800,
@@ -37,11 +33,12 @@ class App extends Component {
           like: false,
           id: nextId(),
         },
-      ],
-      term: '',
-      filter: 'all',
-    };
-  }
+      ]);
+  const [term, setTerm] = useState('');
+  const [filter, setFilter] = useState('all');
+
+
+
 
   deleteItem = (id) => {
     this.setState(({ data }) => {
