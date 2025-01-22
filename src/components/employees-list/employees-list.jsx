@@ -1,8 +1,14 @@
+import { useContext } from 'react';
+
 import EmployeesItem from '../employees-item/employees-item';
+
+import dataContext from '../Context';
 
 import './employees-list.scss';
 
-const EmployeesList = ({ data, onDelete, onToggleProp, onSalaryChange }) => {
+const EmployeesList = ({ onDelete, onToggleProp, onSalaryChange }) => {
+  const data = useContext(dataContext);
+  /* .filter() */
   const elementsArray = data.map((element) => {
     const { id, salary, name, increase, like } = element;
     return (

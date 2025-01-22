@@ -1,4 +1,4 @@
-import { useState, useContext, createContext } from 'react';
+import { useState, useContext } from 'react';
 
 import AppFilter from '../app-filter/app-filter';
 import AppInfo from '../app-info/app-info';
@@ -6,11 +6,12 @@ import EmployeesAddForm from '../employees-add-form/employees-add-form';
 import SearchPanel from '../search-panel/search-panel';
 import EmployeesList from '../employees-list/employees-list';
 
+import dataContext from '../Context';
+
 import nextId from 'react-id-generator';
 
 import './app.scss';
 
-const dataContext = createContext();
 const { Provider } = dataContext;
 
 const App = () => {
@@ -100,26 +101,22 @@ const App = () => {
     });
   };
 
-  const employees = data.length,
-    increasedEmployees = data.filter(({ increase }) => increase).length;
-
   const visibleData = filterPost(searchEmp(data, term), filter);
 
   return (
-    <>
-      <AppInfo total={employees} increased={increasedEmployees} />
+    <Provider value={data}>
+      <AppInfo />
       <div className="search-panel">
         <SearchPanel onUpdateSearch={onUpdateSearch} />
         <AppFilter onFilterChange={onFilterChange} activeBtn={filter} />
       </div>
       <EmployeesList
-        data={visibleData}
         onDelete={deleteItem}
         onToggleProp={onToggleProp}
         onSalaryChange={onSalaryChange}
       />
       <EmployeesAddForm onAdd={addItem} />
-    </>
+    </Provider>
   );
 };
 
