@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useContext, createContext } from 'react';
 
 import AppFilter from '../app-filter/app-filter';
 import AppInfo from '../app-info/app-info';
@@ -9,6 +9,9 @@ import EmployeesList from '../employees-list/employees-list';
 import nextId from 'react-id-generator';
 
 import './app.scss';
+
+const dataContext = createContext();
+const { Provider } = dataContext;
 
 const App = () => {
   const [data, setData] = useState([
