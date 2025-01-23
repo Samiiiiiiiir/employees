@@ -12,8 +12,6 @@ import nextId from 'react-id-generator';
 
 import './app.scss';
 
-const { Provider } = dataContext;
-
 const App = () => {
   const [data, setData] = useState([
     {
@@ -104,7 +102,7 @@ const App = () => {
   const visibleData = filterPost(searchEmp(data, term), filter);
 
   return (
-    <Provider
+    <dataContext.Provider
       value={{
         data,
         visibleData,
@@ -123,7 +121,7 @@ const App = () => {
       </div>
       <EmployeesList />
       <EmployeesAddForm />
-    </Provider>
+    </dataContext.Provider>
   );
 };
 
