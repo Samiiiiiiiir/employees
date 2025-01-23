@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import dataContext from '../Context';
 
 import './employees-add-form.scss';
 
-const EmployeesAddForm = ({ onAdd }) => {
+const EmployeesAddForm = () => {
   const [name, setName] = useState('');
   const [salary, setSalary] = useState('');
+
+  const { addItem } = useContext(dataContext);
 
   const onValueChange = (e) => {
     if (e.target.name === 'name') {
@@ -23,7 +26,7 @@ const EmployeesAddForm = ({ onAdd }) => {
       typeof +salary === 'number' &&
       !Number.isNaN(salary)
     ) {
-      onAdd(name, salary);
+      addItem(name, salary);
       setName('');
       setSalary('');
     } else {

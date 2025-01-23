@@ -104,7 +104,18 @@ const App = () => {
   const visibleData = filterPost(searchEmp(data, term), filter);
 
   return (
-    <Provider value={data}>
+    <Provider
+      value={{
+        data,
+        visibleData,
+        deleteItem,
+        addItem,
+        onToggleProp,
+        onUpdateSearch,
+        onFilterChange,
+        onSalaryChange,
+      }}
+    >
       <AppInfo />
       <div className="search-panel">
         <SearchPanel onUpdateSearch={onUpdateSearch} />
@@ -115,7 +126,7 @@ const App = () => {
         onToggleProp={onToggleProp}
         onSalaryChange={onSalaryChange}
       />
-      <EmployeesAddForm onAdd={addItem} />
+      <EmployeesAddForm />
     </Provider>
   );
 };

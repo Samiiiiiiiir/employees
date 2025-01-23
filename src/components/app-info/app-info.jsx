@@ -5,7 +5,7 @@ import dataContext from '../Context';
 import './app-info.scss';
 
 const AppInfo = () => {
-  const data = useContext(dataContext);
+  const { data } = useContext(dataContext);
 
   return (
     <header className="app-info">

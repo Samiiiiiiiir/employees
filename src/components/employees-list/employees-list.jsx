@@ -7,9 +7,9 @@ import dataContext from '../Context';
 import './employees-list.scss';
 
 const EmployeesList = ({ onDelete, onToggleProp, onSalaryChange }) => {
-  const data = useContext(dataContext);
+  const { visibleData } = useContext(dataContext);
   /* .filter() */
-  const elementsArray = data.map((element) => {
+  const elementsArray = visibleData.map((element) => {
     const { id, salary, name, increase, like } = element;
     return (
       <EmployeesItem
