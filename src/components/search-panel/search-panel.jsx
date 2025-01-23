@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import dataContext from '../Context';
 
 import './search-panel.scss';
 
-const SearchPanel = ({ onUpdateSearch }) => {
+const SearchPanel = () => {
   const [term, setTerm] = useState('');
+
+  const { onUpdateSearch } = useContext(dataContext);
 
   const onValueChange = (e) => {
     setTerm(e.target.value);

@@ -118,14 +118,10 @@ const App = () => {
     >
       <AppInfo />
       <div className="search-panel">
-        <SearchPanel onUpdateSearch={onUpdateSearch} />
-        <AppFilter onFilterChange={onFilterChange} activeBtn={filter} />
+        <SearchPanel />
+        <AppFilter activeBtn={filter} />
       </div>
-      <EmployeesList
-        onDelete={deleteItem}
-        onToggleProp={onToggleProp}
-        onSalaryChange={onSalaryChange}
-      />
+      <EmployeesList />
       <EmployeesAddForm />
     </Provider>
   );

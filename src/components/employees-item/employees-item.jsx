@@ -1,23 +1,16 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import dataContext from '../Context';
 
 import './employees-item.scss';
 
-const EmployeesItem = ({
-  name,
-  salary,
-  onDelete,
-  onToggleProp,
-  increase,
-  like,
-  onSalaryChange,
-  id,
-}) => {
+const EmployeesItem = ({ name, salary, increase, like, id }) => {
   const [salaryInp, setSalaryInp] = useState(salary);
+
+  const { onSalaryChange, deleteItem, onToggleProp } = useContext(dataContext);
 
   const onInputChange = (e) => {
     const newValue = e.target.value.slice(0, -1);
     setSalaryInp(newValue);
-
     onSalaryChange(id, newValue);
   };
 
@@ -29,7 +22,7 @@ const EmployeesItem = ({
   return (
     <li className={classes}>
       <span
-        onClick={() => onToggleProp('like')}
+        onClick={() => onToggleProp(id, 'like')}
         className="list-group-item-label"
       >
         {name}
@@ -42,13 +35,17 @@ const EmployeesItem = ({
       />
       <div className="d-flex justify-content-center align-items-center">
         <button
-          onClick={() => onToggleProp('increase')}
+          onClick={() => onToggleProp(id, 'increase')}
           type="button"
           className="btn-cookie btn-sm "
         >
           <i className="fas fa-cookie"></i>
         </button>
-        <button onClick={onDelete} type="button" className="btn-trash btn-sm ">
+        <button
+          onClick={() => deleteItem(id)}
+          type="button"
+          className="btn-trash btn-sm "
+        >
           <i className="fas fa-trash"></i>
         </button>
         <i className="fas fa-star"></i>

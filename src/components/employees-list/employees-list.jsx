@@ -6,9 +6,9 @@ import dataContext from '../Context';
 
 import './employees-list.scss';
 
-const EmployeesList = ({ onDelete, onToggleProp, onSalaryChange }) => {
+const EmployeesList = () => {
   const { visibleData } = useContext(dataContext);
-  /* .filter() */
+
   const elementsArray = visibleData.map((element) => {
     const { id, salary, name, increase, like } = element;
     return (
@@ -16,12 +16,9 @@ const EmployeesList = ({ onDelete, onToggleProp, onSalaryChange }) => {
         key={id}
         name={name}
         salary={salary}
-        onDelete={() => onDelete(id)}
-        onToggleProp={(prop) => onToggleProp(id, prop)}
         increase={increase}
         like={like}
         id={id}
-        onSalaryChange={onSalaryChange}
       />
     );
   });
